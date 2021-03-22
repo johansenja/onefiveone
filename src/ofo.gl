@@ -1,0 +1,64 @@
+require_relative "errors"
+
+class OneFiveOne
+  VALUES = {
+    "I" => 1,
+    "V" => 5,
+    "X" => 10,
+    "L" => 50,
+    "C" => 100,
+    "D" => 500,
+    "M" => 1000
+  }
+
+  def initialize(@numeral : String); end
+
+  def generate : Integer
+    total = 0
+    atomic_subgroup : Array[Integer] = Array.new
+
+    (0...@numeral.length).each do |index|
+      current_char = char_by index
+      current_char_val = value_by current_char
+
+      if atomic_subgroup.length.zero?
+        atomic_subgroup << current_char_val
+      else
+        last_val = atomic_subgroup[-1]
+        if last_val > current_char_val
+          subgroup_total = calculate_subgroup_total atomic_subgroup
+          total += subgroup_total
+          atomic_subgroup = [ current_char_val ]
+        else
+          atomic_subgroup << current_char_val
+        end
+      end
+    end
+
+    total + calculate_subgroup_total(atomic_subgroup)
+  end
+
+  private def calculate_subgroup_total(subgroup : Array[Integer])
+    case subgroup.length
+    when 0
+      0
+    when 1
+      subgroup.first
+    else
+      if subgroup.all? { |number| number == subgroup.first }
+        subgroup.sum
+      else
+        subgroup.reverse.inject :-
+      end
+    end
+  end
+
+  private def char_by(index : Integer)
+    char = @numeral[index]
+    char ? char.upcase : nil
+  end
+
+  private def value_by(char : String | NilClass) : Integer
+    VALUES.fetch(char) { raise UnexpectedCharacter, char }
+  end
+end

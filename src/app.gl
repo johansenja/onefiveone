@@ -1,0 +1,16 @@
+require_relative "interface"
+require_relative "ofo"
+
+interface = BasicInterface.new
+
+loop do
+  input = interface.input "Enter a Roman numeral:"
+  output = OneFiveOne.new(input).generate
+  interface.output "Answer: #{output}\n\n"
+rescue UnexpectedCharacter => e
+  interface.output e.message
+  retry
+rescue Interrupt
+  interface.output "Thanks for using CLI!"
+  exit 0
+end

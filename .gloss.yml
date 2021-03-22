@@ -1,0 +1,5 @@
+frozen_string_literals: yes
+src_dir: src
+entrypoint: src/app.gl
+strict_require: yes
+type_checking_strictness: lenient

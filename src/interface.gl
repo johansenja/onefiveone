@@ -1,0 +1,13 @@
+class BasicInterface
+  def input(prompt : String) : String
+    output prompt
+    input = gets
+    input ||= ""
+    input.chomp
+  end
+
+  def output(msg : String) : String
+    puts msg
+    msg
+  end
+end

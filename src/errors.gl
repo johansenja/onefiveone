@@ -1,0 +1,5 @@
+class UnexpectedCharacter < StandardError
+  def initialize(character)
+    super "Unexpected character '#{character}'. Accepted values: #{OneFiveOne::VALUES.keys.join(', ')}"
+  end
+end
