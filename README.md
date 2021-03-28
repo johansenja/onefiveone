@@ -1,7 +1,7 @@
 # OneFiveOne
 
 OneFiveOne is an example of a simple command line app written in [Gloss](https://github.com/johansenja/gloss),
-which parses given Roman numerals, and returns them in their decimal form. Read the accompanying article [here]!
+which parses given Roman numerals, and returns them in their decimal form. Read the accompanying article [here](https://johansenja.medium.com/ruby-crystal-pt-ii-a-simple-app-using-gloss-368ff849db67)!
 
 ## Trying it out
 
